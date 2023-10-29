@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package tcp_debug.conf;
+
+option go_package = "github.com/2pgcn/tcp_debug/conf;conf;";
+
+message Server{
+  //[":port"]
+  repeated string bind = 1;
+  int32 send_buf = 2;
+  int32 rcv_buf = 3;
+}
+
+message Client{
+  string dail_url = 1;
+  int32 start_num = 2;
+}

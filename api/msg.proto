@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package tcp_debug.api;
+option go_package = "github.com/2pgcn/tcp_debug/api;api";
+
+enum Op{
+  AUTHREQ = 0;
+  AUTHEEPLY = 1;
+  CLOSEREQ = 2;
+  CLOSEREPLY = 3;
+  MSGREQ=4;
+  MSGREPLY=5;
+
+}
+//todo 仅演示,正常线上一般添加version,checksum,msg 业务syn ack
+message Msg{
+  int32 len = 1;
+  Op op = 2;
+  string body=3;
+}
+

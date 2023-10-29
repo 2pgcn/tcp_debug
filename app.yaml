@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tcpdebug
+  namespace: default
+  annotations:
+    cni.projectcalico.org/ipAddrs: "[\"10.244.166.255\"]"
+spec:
+  containers:
+    - name: tcpdebug
+      image: registry.cn-shenzhen.aliyuncs.com/pg/tcpdebug:v0.0.4
+      command: ["/app/server"]
+      args: ["srv","--conf", "/app/conf/"]
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 30001
+      resources:
+        requests:
+          memory: "1024Mi"
+          cpu: "1000m"
+        limits:
+          memory: "1024Mi"
+          cpu: "1000m"
+  restartPolicy: OnFailure
+
+
+
+

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package tcp_debug.api;
+
+option go_package = "github.com/2pgcn/tcp_debug/api;api";
+
+enum ErrorCode{
+  ConnCloseError = 0;
+}

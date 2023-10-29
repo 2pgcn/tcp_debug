@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tcpdebug-cli
+  namespace: default
+spec:
+  containers:
+    - name: tcpdebug
+      image: registry.cn-shenzhen.aliyuncs.com/pg/tcpdebug:v0.0.4
+      command: ["/app/server"]
+      args: ["cli","--dail","10.244.166.255:30001","--startNum","20","--conf","/app/conf/"]
+      imagePullPolicy: Always
+      resources:
+        requests:
+          memory: "1024Mi"
+          cpu: "1000m"
+        limits:
+          memory: "1024Mi"
+          cpu: "1000m"
+  restartPolicy: OnFailure
+
+
+
+
