@@ -7,6 +7,9 @@ import (
 	"github.com/2pgcn/tcp_debug/internal/client"
 	"github.com/2pgcn/tcp_debug/internal/server"
 	"github.com/spf13/cobra"
+	"log"
+	"net/http"
+	_ "net/http/pprof"
 	"os"
 	"os/signal"
 )
@@ -18,6 +21,9 @@ var startNum int
 var mapping = [...]string{"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}
 
 func main() {
+	go func() {
+		log.Println(http.ListenAndServe("0.0.0.0:9999", nil))
+	}()
 	ctx, cancel := context.WithCancel(context.Background())
 	cmd := NewServerArgs()
 	cmd.SetContext(ctx)
